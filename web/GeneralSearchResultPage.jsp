@@ -10,7 +10,8 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.oracle.wls.shaded.org.apache.xalan.xsltc.DOM"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" import ="org.mypackage.nationalpark.GenSearchRequest"%>
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head> 
         <%
@@ -20,7 +21,7 @@
             ArrayList<GeneralSearchResult> res = req.sendGetSingle(desig, state);
         %>
         <title>General Search</title>
-        <meta http-equiv="Content-Type" content="text/jsp; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <meta name="description" content="" />
