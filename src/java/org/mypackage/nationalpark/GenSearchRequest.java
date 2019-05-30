@@ -105,7 +105,7 @@ public class GenSearchRequest {
             JSONObject currObj;
             int j;
             for (j = 0; j < curr.length(); j++) {
-                currObj = curr.optJSONObject(i);
+                currObj = curr.optJSONObject(j);
                 addies.add(new Address(currObj.getString("line1"), currObj.getString("line2"), currObj.getString("line3"), currObj.getString("city"),
                         currObj.getString("stateCode"), currObj.getString("postalCode"), currObj.getString("type"))); //PROBLEM HERE
             }
@@ -113,37 +113,37 @@ public class GenSearchRequest {
             JSONObject con = subObj.getJSONObject("contacts");
             curr = con.getJSONArray("phoneNumbers");
             for (j = 0; j < curr.length(); j++) {
-                currObj = curr.optJSONObject(i);
+                currObj = curr.optJSONObject(j);
                 numbers.add(new PhoneNumber(currObj.getString("phoneNumber"), currObj.getString("type")));
             }
 
             curr = con.getJSONArray("emailAddresses");
             for (j = 0; j < curr.length(); j++) {
-                currObj = curr.optJSONObject(i);
+                currObj = curr.optJSONObject(j);
                 emails.add(currObj.getString("emailAddress"));
             }
 
             curr = subObj.getJSONArray("entranceFees");
             for (j = 0; j < curr.length(); j++) {
-                currObj = curr.optJSONObject(i);
+                currObj = curr.optJSONObject(j);
                 fees.add(new EntranceFee(currObj.getString("cost"), currObj.getString("description"), currObj.getString("title")));
             }
 
             curr = subObj.getJSONArray("entrancePasses");
             for (j = 0; j < curr.length(); j++) {
-                currObj = curr.optJSONObject(i);
+                currObj = curr.optJSONObject(j);
                 fees.add(new EntranceFee(currObj.getString("cost"), currObj.getString("description"), currObj.getString("title")));
             }
 
             curr = subObj.getJSONArray("images");
             for (j = 0; j < curr.length(); j++) {
-                currObj = curr.optJSONObject(i);
+                currObj = curr.optJSONObject(j);
                 images.add(new Image(currObj.getString("url"), currObj.getString("caption"), currObj.getString("credit")));
             }
 
             curr = subObj.getJSONArray("operatingHours");
             for (j = 0; j < 1; j++) {
-                currObj = curr.getJSONObject(i);
+                currObj = curr.optJSONObject(j);
                 JSONObject hoursArray = currObj.getJSONObject("standardHours");
                 Map<String, String> stan = new HashMap<>();
                 Iterator<String> iter = hoursArray.keys();
