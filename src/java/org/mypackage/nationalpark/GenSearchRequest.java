@@ -41,7 +41,7 @@ public class GenSearchRequest {
         }
     }
 
-    public String sendGetSingle(String desigs, String states) throws Exception {
+    public ArrayList<GeneralSearchResult> sendGetSingle(String desigs, String states) throws Exception {
         String baseURL = "https://developer.nps.gov/api/v1/parks?parkCode=";
         baseURL += desigs;
         baseURL += "&stateCode=" + states;
@@ -79,13 +79,13 @@ public class GenSearchRequest {
             sb.append(line + "\n");
         }
         jsonString = sb.toString();
-        parseJSON();
+        ArrayList<GeneralSearchResult> res = parseJSON();
         inFile.close();
 
-        return jsonString;
+        return res;
     }
 
-    public void parseJSON() throws Exception {
+    public ArrayList<GeneralSearchResult> parseJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
         JSONArray array = mainObj.getJSONArray("data");
         ArrayList<GeneralSearchResult> results = new ArrayList<>();
@@ -160,5 +160,6 @@ public class GenSearchRequest {
 
             inFile.write(results.get(i).getName() + "\n");
         }
+        return results;
     }
 }

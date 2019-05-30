@@ -4,6 +4,8 @@
     Author     : jcarb
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="org.mypackage.nationalpark.*"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.oracle.wls.shaded.org.apache.xalan.xsltc.DOM"%>
@@ -11,6 +13,12 @@
 <!DOCTYPE html>
 <html>
     <head> 
+        <%
+            String desig = request.getParameter("designation");
+            String state = request.getParameter("state");
+            GenSearchRequest req = new GenSearchRequest();//Creating class Object
+            ArrayList<GeneralSearchResult> res = req.sendGetSingle(desig, state);
+        %>
         <title>General Search</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8" />
@@ -666,19 +674,28 @@
                             <div class="col-2">
                                 <input type="submit" value="Search" />
                             </div>
-
                         </div>
                     </form>
-                     <%
-                        String desig = request.getParameter("designation");
-                        String state = request.getParameter("state");
-                        GenSearchRequest req = new GenSearchRequest();//Creating class Object
-                        String json = req.sendGetSingle(desig, state);
-                        PrintWriter writer = response.getWriter();
-                        out.println("<pre><code>");
-                        out.println(json);
-                        out.println("</code></pre>");
-                    %>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <h3>Search Results.</h3>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <%
+                                out.println("<ul class=\"alt\">");
+                                for (int i = 0; i < res.size(); i++) {
+                                    out.println("<li>" + res.get(i).getName() + "<br><br>");
+                                    out.println(res.get(i).getDescrip() + "</li>");
+                                }
+                                out.println("</ul>");
+                            %>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
