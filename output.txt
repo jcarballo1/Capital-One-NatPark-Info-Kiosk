@@ -1,0 +1,3 @@
+Sending 'GET' request to URL : https://developer.nps.gov/api/v1/parks?parkCode=alpo&stateCode=&fields=addresses%2Ccontacts%2Centrancefees%2Centrancepasses%2Cimages%2Coperatinghours&api_key=CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm
+Response Code : 200
+application/json;charset=utf-8
