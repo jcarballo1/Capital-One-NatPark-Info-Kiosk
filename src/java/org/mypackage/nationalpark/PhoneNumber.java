@@ -9,11 +9,11 @@ package org.mypackage.nationalpark;
  *
  * @author jcarb
  */
-public class Contact {
+public class PhoneNumber {
     private String number;
     private String type;
     
-    public Contact(String n, String t){
+    public PhoneNumber(String n, String t){
         number = n;
         type = t;
     }

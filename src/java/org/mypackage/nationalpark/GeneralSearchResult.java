@@ -17,21 +17,23 @@ public class GeneralSearchResult {
     private String descrip;
     private String weather;
     private ArrayList<Address> adds;
-    private ArrayList<Contact> contacts;
+    private ArrayList<PhoneNumber> numbers;
+    private ArrayList<String> emails;
     private ArrayList<EntranceFee> fees;
     private ArrayList<EntrancePass> passes;
     private ArrayList<Image> images;
     private ArrayList<Hours> hours;
     private String url;
 
-    public GeneralSearchResult(String n, String c, String d, String w, ArrayList<Address> a, ArrayList<Contact> con,
-        ArrayList<EntranceFee> f, ArrayList<EntrancePass> p, ArrayList<Image> i, ArrayList<Hours> h, String u){
+    public GeneralSearchResult(String n, String c, String d, String w, ArrayList<Address> a, ArrayList<PhoneNumber> num,
+        ArrayList<String> e, ArrayList<EntranceFee> f, ArrayList<EntrancePass> p, ArrayList<Image> i, ArrayList<Hours> h, String u){
         name = n;
         coords = c;
         descrip = d;
         weather = w;
         adds = a;
-        contacts = con;
+        numbers = num;
+        emails = e;
         fees = f;
         passes = p;
         images = i;
@@ -123,20 +125,6 @@ public class GeneralSearchResult {
     }
 
     /**
-     * @return the contacts
-     */
-    public ArrayList<Contact> getContacts() {
-        return contacts;
-    }
-
-    /**
-     * @param contacts the contacts to set
-     */
-    public void setContacts(ArrayList<Contact> contacts) {
-        this.contacts = contacts;
-    }
-
-    /**
      * @return the fees
      */
     public ArrayList<EntranceFee> getFees() {
@@ -190,6 +178,34 @@ public class GeneralSearchResult {
      */
     public void setHours(ArrayList<Hours> hours) {
         this.hours = hours;
+    }
+
+    /**
+     * @return the numbers
+     */
+    public ArrayList<PhoneNumber> getNumbers() {
+        return numbers;
+    }
+
+    /**
+     * @param numbers the numbers to set
+     */
+    public void setNumbers(ArrayList<PhoneNumber> numbers) {
+        this.numbers = numbers;
+    }
+
+    /**
+     * @return the emails
+     */
+    public ArrayList<String> getEmails() {
+        return emails;
+    }
+
+    /**
+     * @param emails the emails to set
+     */
+    public void setEmails(ArrayList<String> emails) {
+        this.emails = emails;
     }
 
    

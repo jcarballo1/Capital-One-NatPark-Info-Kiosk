@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
@@ -39,7 +40,7 @@ public class GenSearchRequest {
             return true;
         }
     }
-    
+
     public String sendGetSingle(String desigs, String states) throws Exception {
         String baseURL = "https://developer.nps.gov/api/v1/parks?parkCode=";
         baseURL += desigs;
@@ -80,80 +81,84 @@ public class GenSearchRequest {
         jsonString = sb.toString();
         parseJSON();
         inFile.close();
-        
+
         return jsonString;
     }
-    
-    public void parseJSON() throws Exception{
+
+    public void parseJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
         JSONArray array = mainObj.getJSONArray("data");
-        ArrayList<GeneralSearchResult> results = null;
-        
-        for(int i = 0; i < array.length(); i++){
+        ArrayList<GeneralSearchResult> results = new ArrayList<>();
+
+        for (int i = 0; i < array.length(); i++) {
             ArrayList<Address> addies = new ArrayList<>();
-            ArrayList<Contact> contacts = new ArrayList<>();
+            ArrayList<PhoneNumber> numbers = new ArrayList<>();
+            ArrayList<String> emails = new ArrayList<>();
             ArrayList<EntranceFee> fees = new ArrayList<>();
             ArrayList<EntrancePass> passes = new ArrayList<>();
             ArrayList<Image> images = new ArrayList<>();
             ArrayList<Hours> hours = new ArrayList<>();
-            
+
             JSONObject subObj = array.getJSONObject(i);
-            
+
             JSONArray curr = subObj.getJSONArray("addresses");
             JSONObject currObj;
             int j;
-            for(j = 0; j < curr.length(); j++){
+            for (j = 0; j < curr.length(); j++) {
                 currObj = curr.optJSONObject(i);
-//                addies.add(new Address(curr.getString(0), curr.getString(1), curr.getString(2), curr.getString(3),
-//                curr.getString(4), curr.getString(5), curr.getString(6))); PROBLEM HERE
+                addies.add(new Address(currObj.getString("line1"), currObj.getString("line2"), currObj.getString("line3"), currObj.getString("city"),
+                        currObj.getString("stateCode"), currObj.getString("postalCode"), currObj.getString("type"))); //PROBLEM HERE
             }
-//            
-//            curr = subObj.getJSONArray("contacts");
-//            for(j = 0; j < curr.length(); j++){
-//                currObj = curr.optJSONObject(i);
-//                contacts.add(new Contact(curr.getString(0), curr.getString(3)));
-//            }
-//            
-//            curr = subObj.getJSONArray("entranceFees");
-//            for(j = 0; j < curr.length(); j++){
-//                currObj = curr.optJSONObject(i);
-//                fees.add(new EntranceFee(curr.getString(0), curr.getString(1), curr.getString(2)));
-//            }
-//            
-//            curr = subObj.getJSONArray("entrancePasses");
-//            for(j = 0; j < curr.length(); j++){
-//                currObj = curr.optJSONObject(i);
-//                passes.add(new EntrancePass(curr.getString(0), curr.getString(1), curr.getString(2)));
-//            }
-//            
-//            curr = subObj.getJSONArray("images");
-//            for(j = 0; j < curr.length(); j++){
-//                currObj = curr.optJSONObject(i);
-//                images.add(new Image(curr.getString(5), curr.getString(4), curr.getString(0)));
-//            }
-//            
-//            curr = subObj.getJSONArray("operatingHours");
-//            for(j = 0; j < curr.length(); j++){
-//                currObj = curr.optJSONObject(i);
-//                JSONArray hoursArray = currObj.getJSONArray("standardHours");
-//                Map<String, String> stan = null;
-//                for(int ii = 0; ii < hoursArray.length(); ii++){
-//                    JSONObject hoursObj = hoursArray.getJSONObject(ii);
-//                    Iterator<String> iter = hoursObj.keys();
-//                    while(iter.hasNext()){
-//                        String key = iter.next();
-//                        stan.put(key, hoursObj.getString(key));
-//                    }
-//                        
-//                }
-//                hours.add(new Hours(curr.getString(0), curr.getString(1), stan));
-//            }
-//            
-//            
-//            results.add(new GeneralSearchResult(subObj.getString("fullName"), subObj.getString("latLong"), subObj.getString("description"),
-//                subObj.getString("weatherInfo"), addies, contacts, fees, passes, images, hours, subObj.getString("url")));
-//            
-//            inFile.write(results.get(i).getName() + "\n");
+
+            JSONObject con = subObj.getJSONObject("contacts");
+            curr = con.getJSONArray("phoneNumbers");
+            for (j = 0; j < curr.length(); j++) {
+                currObj = curr.optJSONObject(i);
+                numbers.add(new PhoneNumber(currObj.getString("phoneNumber"), currObj.getString("type")));
+            }
+
+            curr = con.getJSONArray("emailAddresses");
+            for (j = 0; j < curr.length(); j++) {
+                currObj = curr.optJSONObject(i);
+                emails.add(currObj.getString("emailAddress"));
+            }
+
+            curr = subObj.getJSONArray("entranceFees");
+            for (j = 0; j < curr.length(); j++) {
+                currObj = curr.optJSONObject(i);
+                fees.add(new EntranceFee(currObj.getString("cost"), currObj.getString("description"), currObj.getString("title")));
+            }
+
+            curr = subObj.getJSONArray("entrancePasses");
+            for (j = 0; j < curr.length(); j++) {
+                currObj = curr.optJSONObject(i);
+                fees.add(new EntranceFee(currObj.getString("cost"), currObj.getString("description"), currObj.getString("title")));
+            }
+
+            curr = subObj.getJSONArray("images");
+            for (j = 0; j < curr.length(); j++) {
+                currObj = curr.optJSONObject(i);
+                images.add(new Image(currObj.getString("url"), currObj.getString("caption"), currObj.getString("credit")));
+            }
+
+            curr = subObj.getJSONArray("operatingHours");
+            for (j = 0; j < 1; j++) {
+                currObj = curr.getJSONObject(i);
+                JSONObject hoursArray = currObj.getJSONObject("standardHours");
+                Map<String, String> stan = new HashMap<>();
+                Iterator<String> iter = hoursArray.keys();
+                while (iter.hasNext()) {
+                    String key = iter.next();
+                    String val = hoursArray.getString(key);
+                    stan.put(key, val);
+                }
+                hours.add(new Hours(currObj.getString("name"), currObj.getString("description"), stan));
+            }
+
+            results.add(new GeneralSearchResult(subObj.getString("fullName"), subObj.getString("latLong"), subObj.getString("description"),
+                    subObj.getString("weatherInfo"), addies, numbers, emails, fees, passes, images, hours, subObj.getString("url")));
+
+            inFile.write(results.get(i).getName() + "\n");
         }
     }
 }
