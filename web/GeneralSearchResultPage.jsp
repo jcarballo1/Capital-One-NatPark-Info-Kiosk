@@ -63,7 +63,7 @@
                     <p>Select your designation or state of choice below. It may take a few seconds.</p>
                 </header>
                 <div class="content">
-                    <form name="General Search" action="GeneralSearchResultPage.jsp">
+                    <form name="General Search" action="GeneralSearchResultPage.jsp" method="post">
                         <div class="row">
                             <div class="col-6">
                                 <select name="designation" id="designation">
