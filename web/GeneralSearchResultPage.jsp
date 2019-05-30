@@ -20,7 +20,7 @@
             ArrayList<GeneralSearchResult> res = req.sendGetSingle(desig, state);
         %>
         <title>General Search</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/jsp; charset=UTF-8">
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <meta name="description" content="" />

@@ -1,12 +1,3 @@
-Sending 'GET' request to URL : https://developer.nps.gov/api/v1/parks?parkCode=&stateCode=id&fields=addresses%2Ccontacts%2Centrancefees%2Centrancepasses%2Cimages%2Coperatinghours&api_key=CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm
+Sending 'GET' request to URL : https://developer.nps.gov/api/v1/parks?parkCode=amis&stateCode=&fields=addresses%2Ccontacts%2Centrancefees%2Centrancepasses%2Cimages%2Coperatinghours&api_key=CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm
 Response Code : 200
-application/json;charset=utf-8California National Historic Trail
-City Of Rocks National Reserve
-Craters Of The Moon National Monument & Preserve
-Hagerman Fossil Beds National Monument
-Ice Age Floods National Geologic Trail
-Lewis & Clark National Historic Trail
-Minidoka National Historic Site
-Nez Perce National Historical Park
-Oregon National Historic Trail
-Yellowstone National Park
+application/json;charset=utf-8Amistad National Recreation Area
