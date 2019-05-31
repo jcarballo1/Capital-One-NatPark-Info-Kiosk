@@ -19,9 +19,10 @@
             String desig = request.getParameter("designation");
             String state = request.getParameter("state");
             String keyword = request.getParameter("keyword");
+            String type = request.getParameter("type");
             String[] keys = keyword.split(" ");
             VCenterSearchRequest req = new VCenterSearchRequest();//Creating class Object
-            ArrayList<VCenterSearchResult> res = req.sendGetWithKeyword(keys, desig, state);
+            ArrayList<VCenterSearchResult> res = req.process(keys, desig, state, type);
         %>
         <title>Visitor Centers</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -76,7 +77,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-5">
                             <select name="designation" id="designation">
                                 <option value="">- All Designations -</option>
 
@@ -603,7 +604,7 @@
                             </select>
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-3">
                             <select name="state" id="state">
                                 <option value="">All States</option>
 
@@ -684,6 +685,15 @@
                         </div>
 
                         <div class="col-2">
+                            <select name="type" id="type">
+                                <option value="both">All Types</option>
+
+                                <option value="vc">Visitor Centers</option>
+                                <option value="camp">Campgrounds</option>
+                            </select>
+                        </div>
+
+                        <div class="col-2">
                             <input type="submit" value="Search" />
                         </div>
                     </div>
@@ -704,6 +714,7 @@
                             } else {
                                 for (int i = 0; i < res.size(); i++) {
                                     out.println("<li>" + res.get(i).getName() + "<br><br>");
+                                    out.println("Type: " + res.get(i).getType() + "<br><br>");
                                     out.println(res.get(i).getDescrip() + "<br><br>");
 
                                     int j;
@@ -741,6 +752,41 @@
                                         }
                                     }
 
+                                    if (res.get(i).getType().equals("Campground")) {
+                                        if (res.get(i).getWheelchair() != "") {
+                                            out.println("<br>" + res.get(i).getWheelchair() + "<br>");
+                                        }
+
+                                        if (res.get(i).getAda() != "") {
+                                            out.println("<br>" + res.get(i).getAda() + "<br>");
+                                        }
+
+                                        out.println("<br>Amenities:");
+                                        if (res.get(i).getToilets() != "") {
+                                            out.println("<br>Toilets: " + res.get(i).getToilets());
+                                        }
+
+                                        if (res.get(i).getShowers() != "") {
+                                            out.println("<br>Showers: " + res.get(i).getShowers());
+                                        }
+
+                                        if (res.get(i).getInternet() != "") {
+                                            out.println("<br>Internet: " + res.get(i).getInternet());
+                                        }
+
+                                        if (res.get(i).getWater() != "") {
+                                            out.println("<br>Potable Water: " + res.get(i).getWater());
+                                        }
+
+                                        if (res.get(i).getWeather() != "") {
+                                            out.println("<br><br>" + res.get(i).getWeather() + "<br>");
+                                        }
+
+                                        if (res.get(i).getFees() != "" && res.get(i).getFees() != "0") {
+                                            out.println("<br>" + res.get(i).getFees());
+                                        }
+                                    }
+                                    
                                     if (res.get(i).getHours().size() > 0) {
                                         for (j = 0; j < res.get(i).getHours().size(); j++) {
                                             out.println("<br>");
@@ -752,6 +798,14 @@
                                                 String key = iter.next();
                                                 out.println(key + ": " + res.get(i).getHours().get(j).getStanHours().get(key) + "<br>");
                                             }
+                                        }
+                                    }
+
+                                    if (res.get(i).getType().equals("Campground")) {
+                                        if (res.get(i).getRegulationURL()!= "") {
+                                            out.println("<br>For regulations please visit:");
+                                            out.println("<br>");
+                                            out.println("<a href=\"" + res.get(i).getRegulationURL()+ "\"> Official " + res.get(i).getName() + " Regulations Page</a><br>");
                                         }
                                     }
 
