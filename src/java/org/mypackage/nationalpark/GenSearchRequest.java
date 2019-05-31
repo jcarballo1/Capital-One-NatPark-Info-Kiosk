@@ -132,7 +132,7 @@ public class GenSearchRequest {
             curr = subObj.getJSONArray("entrancePasses");
             for (j = 0; j < curr.length(); j++) {
                 currObj = curr.optJSONObject(j);
-                fees.add(new EntranceFee(currObj.getString("cost"), currObj.getString("description"), currObj.getString("title")));
+                passes.add(new EntrancePass(currObj.getString("cost"), currObj.getString("description"), currObj.getString("title")));
             }
 
             curr = subObj.getJSONArray("images");
@@ -142,17 +142,19 @@ public class GenSearchRequest {
             }
 
             curr = subObj.getJSONArray("operatingHours");
-            for (j = 0; j < 1; j++) {
-                currObj = curr.optJSONObject(j);
-                JSONObject hoursArray = currObj.getJSONObject("standardHours");
-                Map<String, String> stan = new HashMap<>();
-                Iterator<String> iter = hoursArray.keys();
-                while (iter.hasNext()) {
-                    String key = iter.next();
-                    String val = hoursArray.getString(key);
-                    stan.put(key, val);
+            if (curr.length() > 0) {
+                for (j = 0; j < 1; j++) {
+                    currObj = curr.optJSONObject(j);
+                    JSONObject hoursArray = currObj.getJSONObject("standardHours");
+                    Map<String, String> stan = new HashMap<>();
+                    Iterator<String> iter = hoursArray.keys();
+                    while (iter.hasNext()) {
+                        String key = iter.next();
+                        String val = hoursArray.getString(key);
+                        stan.put(key, val);
+                    }
+                    hours.add(new Hours(currObj.getString("name"), currObj.getString("description"), stan));
                 }
-                hours.add(new Hours(currObj.getString("name"), currObj.getString("description"), stan));
             }
 
             results.add(new GeneralSearchResult(subObj.getString("fullName"), subObj.getString("latLong"), subObj.getString("description"),
