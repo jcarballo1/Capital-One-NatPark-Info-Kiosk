@@ -1,3 +1,18 @@
-Sending 'GET' request to URL : https://developer.nps.gov/api/v1/parks?parkCode=anac&stateCode=&fields=addresses%2Ccontacts%2Centrancefees%2Centrancepasses%2Cimages%2Coperatinghours&api_key=CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm
+Sending 'GET' request to URL : https://developer.nps.gov/api/v1/parks?parkCode=&stateCode=co&q=&fields=addresses%2Ccontacts%2Coperatinghours&&api_key=CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm
 Response Code : 200
-application/json;charset=utf-8Anacostia Park
+application/json;charset=utf-8Bent's Old Fort
+Black Canyon Of The Gunnison
+California
+Colorado
+Curecanti
+Dinosaur
+Florissant Fossil Beds
+Great Sand Dunes
+Hovenweep
+Mesa Verde
+Old Spanish
+Pony Express
+Rocky Mountain
+Sand Creek Massacre
+Santa Fe
+Yucca House
