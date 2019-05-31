@@ -44,11 +44,11 @@
         <section id="main" class="wrapper">
             <div class="inner">
                 <header class="special">
-                    <h2>Get Visitor Center Locations, Operating Hours, & More.</h2>
+                    <h2>Keep Up With Alerts, News Releases & More.</h2>
                     <p>Search keywords or select your designation or state of choice below. <b>It may take a few seconds.</b></p>
                 </header>
                 <div class="content">
-                    <form name="General Search" action="VCenterResultPage.jsp">
+                    <form name="General Search" action="CEResultPage.jsp">
                         <div style="margin-bottom: 30px">
                             <div class="row">
                                 <div class="col-12">
@@ -58,7 +58,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-5">
                                 <select name="designation" id="designation">
                                     <option value="">- All Designations -</option>
 
@@ -585,7 +585,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-4">
+                            <div class="col-3">
                                 <select name="state" id="state">
                                     <option value="">All States</option>
 
@@ -666,9 +666,19 @@
                             </div>
 
                             <div class="col-2">
-                                <input type="submit" value="Search" />
+                                <select name="type" id="type">
+                                    <option value="">All Types</option>
+
+                                    <option value="alr">Alerts</option>
+                                    <option value="art">Articles</option>
+                                    <option value="ev">Events</option>
+                                    <option value="nr">News Releases</option>
+                                </select>
                             </div>
 
+                            <div class="col-2">
+                                <input type="submit" value="Search" />
+                            </div>
                         </div>
                     </form>
                 </div>
