@@ -31,6 +31,7 @@ public class CESearchResult {
     private String location = "";
     private String timeStart = "";
     private String timeEnd = "";
+    private String fees = "";
     
     //news
     private String abs = ""; //abstract
@@ -55,7 +56,7 @@ public class CESearchResult {
         type = "Article";
     }
     
-    public CESearchResult(String e, String name, String phone, ArrayList<String> ds, String l, String tStart, String tEnd, String d, String t){ //Event
+    public CESearchResult(String e, String name, String phone, ArrayList<String> ds, String l, String tStart, String tEnd, String d, String t, String f, String u){ //Event
         email = e;
         contactName = name;
         contactPhone = phone; 
@@ -65,14 +66,17 @@ public class CESearchResult {
         timeEnd = tEnd;
         description = d;
         title = t;
+        fees = f;
+        url = u;
         type = "Event";
     }
     
-    public CESearchResult(String a, String rd, String t, String u, String blank, String blank2){ //News
+    public CESearchResult(String a, String rd, String t, String u, String iu, String blank2){ //News
         abs = a;
         releaseDate = rd;
         title = t;
         url = u;
+        imageURL = iu;
         type = "News";
     }
     
@@ -312,6 +316,20 @@ public class CESearchResult {
      */
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    /**
+     * @return the fees
+     */
+    public String getFees() {
+        return fees;
+    }
+
+    /**
+     * @param fees the fees to set
+     */
+    public void setFees(String fees) {
+        this.fees = fees;
     }
 
 }
