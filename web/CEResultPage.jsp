@@ -64,8 +64,8 @@
         <div class="inner">
             <header class="special">
                 <h2>Keep Up With Alerts, News Releases & More.</h2>
-                    <p>Search keywords or select your designation or state of choice below. <b>It may take a few seconds.</b></p>
-                </header>
+                <p>Search keywords or select your designation or state of choice below. <b>It may take a few seconds.</b></p>
+            </header>
             <div class="content">
                 <form name="General Search" action="CEResultPage.jsp">
                     <div style="margin-bottom: 30px">
@@ -686,13 +686,13 @@
 
                         <div class="col-2">
                             <select name="type" id="type">
-                                    <option value="">All Types</option>
+                                <option value="">All Types</option>
 
-                                    <option value="alr">Alerts</option>
-                                    <option value="art">Articles</option>
-                                    <option value="ev">Events</option>
-                                    <option value="nr">News Releases</option>
-                                </select>
+                                <option value="alr">Alerts</option>
+                                <option value="art">Articles</option>
+                                <option value="ev">Events</option>
+                                <option value="nr">News Releases</option>
+                            </select>
                         </div>
 
                         <div class="col-2">
@@ -715,108 +715,43 @@
                                 out.println("<li>No results matched your request. Please try again.<li>");
                             } else {
                                 for (int i = 0; i < res.size(); i++) {
-                                    out.println("<li>" + res.get(i).getName() + "<br><br>");
-                                    out.println("Type: " + res.get(i).getType() + "<br><br>");
-                                    out.println(res.get(i).getDescrip() + "<br><br>");
+                                    out.println("<li>Type: " + res.get(i).getType() + "<br><br>");
+                                    if (res.get(i).getType().equals("Alert")) {
+                                        if (!res.get(i).getTitle().equals("")) {
+                                            out.println(res.get(i).getTitle() + "<br><br>");
+                                        }
 
-                                    int j;
-                                    if (res.get(i).getAddies().size() > 0) {
-                                        for (j = 0; j < res.get(i).getAddies().size(); j++) {
-                                            out.println(res.get(i).getAddies().get(j).getType() + ":");
-                                            out.println(res.get(i).getAddies().get(j).getLine1());
-                                            if (res.get(i).getAddies().get(j).getLine2() != "") {
-                                                out.println(res.get(i).getAddies().get(j).getLine2());
-                                            }
-                                            if (res.get(i).getAddies().get(j).getLine3() != "") {
-                                                out.println(res.get(i).getAddies().get(j).getLine3());
-                                            }
-                                            out.println(res.get(i).getAddies().get(j).getCity() + ", " + res.get(i).getAddies().get(j).getState()
-                                                    + " " + res.get(i).getAddies().get(j).getZip() + "<br>");
+                                        if (!res.get(i).getCategory().equals("")) {
+                                            out.println(res.get(i).getCategory() + "<br><br>");
+                                        }
+
+                                        if (!res.get(i).getDescription().equals("")) {
+                                            out.println(res.get(i).getDescription() + "<br><br>");
+                                        }
+
+                                        if (!res.get(i).getUrl().equals("")) {
+                                            out.println("For more information please visit:<br>");
+                                            out.println("<a href=\"" + res.get(i).getUrl() + "\"> Official " + res.get(i).getCategory() + " Alert Page</a>");
                                         }
                                     }
-
-                                    if (res.get(i).getDirect() != "") {
-                                        out.println("<br>" + res.get(i).getDirect() + "<br><br>");
-                                    }
-
-                                    if (res.get(i).getNumbers().size() > 0) {
-                                        for (j = 0; j < res.get(i).getNumbers().size(); j++) {
-                                            out.println(res.get(i).getNumbers().get(j).getType() + ":");
-                                            out.println(res.get(i).getNumbers().get(j).getNumber() + "<br>");
+                                    else if(res.get(i).getType().equals("Article")){
+                                        if (!res.get(i).getTitle().equals("")) {
+                                            out.println(res.get(i).getTitle() + "<br>");
+                                        }
+                                        
+                                        if (!res.get(i).getListingDes().equals("")) {
+                                            out.println("<br>" + res.get(i).getListingDes()+ "<br>");
+                                        }
+                                        
+                                        if (!res.get(i).getImageURL().equals("")) {
+                                            out.println("<br>" + "<img src=\"" + res.get(i).getImageURL()+ "\" height=200><br>");
+                                        }
+                                        
+                                        if (!res.get(i).getUrl().equals("")) {
+                                            out.println("<br>For more information:<br>");
+                                             out.println("<a href=\"" + res.get(i).getUrl() + "\">Official Article</a>");
                                         }
                                     }
-
-                                    if (res.get(i).getEmails().size() > 0) {
-                                        for (j = 0; j < res.get(i).getEmails().size(); j++) {
-                                            if (res.get(i).getEmails().get(j) != "" && res.get(i).getEmails().get(j) != "0@0") {
-                                                out.println(res.get(i).getEmails().get(j) + "<br>");
-                                            }
-                                        }
-                                    }
-
-                                    if (res.get(i).getType().equals("Campground")) {
-                                        if (res.get(i).getWheelchair() != "") {
-                                            out.println("<br>" + res.get(i).getWheelchair() + "<br>");
-                                        }
-
-                                        if (res.get(i).getAda() != "") {
-                                            out.println("<br>" + res.get(i).getAda() + "<br>");
-                                        }
-
-                                        out.println("<br>Amenities:");
-                                        if (res.get(i).getToilets() != "") {
-                                            out.println("<br>Toilets: " + res.get(i).getToilets());
-                                        }
-
-                                        if (res.get(i).getShowers() != "") {
-                                            out.println("<br>Showers: " + res.get(i).getShowers());
-                                        }
-
-                                        if (res.get(i).getInternet() != "") {
-                                            out.println("<br>Internet: " + res.get(i).getInternet());
-                                        }
-
-                                        if (res.get(i).getWater() != "") {
-                                            out.println("<br>Potable Water: " + res.get(i).getWater());
-                                        }
-
-                                        if (res.get(i).getWeather() != "") {
-                                            out.println("<br><br>" + res.get(i).getWeather() + "<br>");
-                                        }
-
-                                        if (res.get(i).getFees() != "" && res.get(i).getFees() != "0") {
-                                            out.println("<br>" + res.get(i).getFees());
-                                        }
-                                    }
-                                    
-                                    if (res.get(i).getHours().size() > 0) {
-                                        for (j = 0; j < res.get(i).getHours().size(); j++) {
-                                            out.println("<br>");
-                                            out.println("Standard Hours:<br>");
-                                            out.println(res.get(i).getHours().get(j).getDes() + "<br>");
-
-                                            Iterator<String> iter = res.get(i).getHours().get(j).getStanHours().keySet().iterator();
-                                            while (iter.hasNext()) {
-                                                String key = iter.next();
-                                                out.println(key + ": " + res.get(i).getHours().get(j).getStanHours().get(key) + "<br>");
-                                            }
-                                        }
-                                    }
-
-                                    if (res.get(i).getType().equals("Campground")) {
-                                        if (res.get(i).getRegulationURL()!= "") {
-                                            out.println("<br>For regulations please visit:");
-                                            out.println("<br>");
-                                            out.println("<a href=\"" + res.get(i).getRegulationURL()+ "\"> Official " + res.get(i).getName() + " Regulations Page</a><br>");
-                                        }
-                                    }
-
-                                    if (res.get(i).getUrl() != "") {
-                                        out.println("<br>For information please visit:");
-                                        out.println("<br>");
-                                        out.println("<a href=\"" + res.get(i).getUrl() + "\"> Official " + res.get(i).getName() + " Page</a>");
-                                    }
-
                                     out.println("</li>");
                                 }
                             }

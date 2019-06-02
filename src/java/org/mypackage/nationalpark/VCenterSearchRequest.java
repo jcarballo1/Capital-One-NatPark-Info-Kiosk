@@ -56,7 +56,7 @@ public class VCenterSearchRequest {
         return results;
     }
 
-    public ArrayList<VCenterSearchResult> sendGetVCWithKeyword(String[] keywords, String desigs, String states) throws Exception {
+    public void sendGetVCWithKeyword(String[] keywords, String desigs, String states) throws Exception {
         String baseURL = "https://developer.nps.gov/api/v1/visitorcenters?parkCode=";
         baseURL += desigs;
         baseURL += "&stateCode=" + states;
@@ -107,10 +107,9 @@ public class VCenterSearchRequest {
         }
         jsonString = sb.toString();
         parseVCJSON();
-        return results;
     }
 
-    public ArrayList<VCenterSearchResult> sendGetCampWithKeyword(String[] keywords, String desigs, String states) throws Exception {
+    public void sendGetCampWithKeyword(String[] keywords, String desigs, String states) throws Exception {
         String baseURL = "https://developer.nps.gov/api/v1/campgrounds?parkCode=";
         baseURL += desigs;
         baseURL += "&stateCode=" + states;
@@ -126,7 +125,7 @@ public class VCenterSearchRequest {
             }
         }
 
-        baseURL += "&fields=addresses%2Ccontacts%2Coperatinghours&";
+        baseURL += "&fields=addresses%2Ccontacts%2Coperatinghours";
         baseURL += "&api_key=CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm";
         URL url = new URL(baseURL);
         String userName = "admin";
@@ -146,12 +145,6 @@ public class VCenterSearchRequest {
         connection.connect();
 
         int responseCode = connection.getResponseCode();
-
-//        inFile = new BufferedWriter(new FileWriter("C:\\Users\\jcarb\\Documents\\NetBeansProjects\\NationalParkServiceKiosk\\output.txt"));;
-//        inFile.write("Sending 'GET' request to URL : " + url.toString());
-//        inFile.write("\nResponse Code : " + responseCode);
-//        inFile.write("\n");
-//        inFile.write(connection.getContentType());
         InputStream input = (InputStream) connection.getContent();
         BufferedReader reader = new BufferedReader(new InputStreamReader(input, "iso-8859-1"), 8);
         StringBuilder sb = new StringBuilder();
@@ -161,14 +154,12 @@ public class VCenterSearchRequest {
         }
         jsonString = sb.toString();
         parseCampJSON();
-//        inFile.close();
-
-        return results;
     }
 
-    public ArrayList<VCenterSearchResult> parseVCJSON() throws Exception {
+    public void parseVCJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
         JSONArray array = mainObj.getJSONArray("data");
+        boolean good = true;
 
         for (int i = 0; i < array.length(); i++) {
             ArrayList<Address> addies = new ArrayList<>();
@@ -177,14 +168,21 @@ public class VCenterSearchRequest {
             ArrayList<Hours> hours = new ArrayList<>();
 
             JSONObject subObj = array.getJSONObject(i);
+            JSONArray curr = null;
+            JSONObject currObj = null;
+            int j = 0;
 
-            JSONArray curr = subObj.getJSONArray("addresses");
-            JSONObject currObj;
-            int j;
-            for (j = 0; j < curr.length(); j++) {
-                currObj = curr.optJSONObject(j);
-                addies.add(new Address(currObj.getString("line1"), currObj.getString("line2"), currObj.getString("line3"), currObj.getString("city"),
-                        currObj.getString("stateCode"), currObj.getString("postalCode"), currObj.getString("type"))); //PROBLEM HERE
+            try {
+                curr = subObj.getJSONArray("addresses");
+            } catch (Exception e) {
+                good = false;
+            }
+            if (good) {
+                for (j = 0; j < curr.length(); j++) {
+                    currObj = curr.optJSONObject(j);
+                    addies.add(new Address(currObj.getString("line1"), currObj.getString("line2"), currObj.getString("line3"), currObj.getString("city"),
+                            currObj.getString("stateCode"), currObj.getString("postalCode"), currObj.getString("type")));
+                }
             }
 
             JSONObject con = subObj.getJSONObject("contacts");
@@ -200,29 +198,35 @@ public class VCenterSearchRequest {
                 emails.add(currObj.getString("emailAddress"));
             }
 
-            curr = subObj.getJSONArray("operatingHours");
-            if (curr.length() > 0) {
-                for (j = 0; j < 1; j++) {
-                    currObj = curr.optJSONObject(j);
-                    JSONObject hoursArray = currObj.getJSONObject("standardHours");
-                    Map<String, String> stan = new HashMap<>();
-                    Iterator<String> iter = hoursArray.keys();
-                    while (iter.hasNext()) {
-                        String key = iter.next();
-                        String val = hoursArray.getString(key);
-                        stan.put(key, val);
+            good = true;
+            try {
+                curr = subObj.getJSONArray("operatingHours");
+            } catch (Exception e) {
+                good = false;
+            }
+            if (good) {
+                if (curr.length() > 0) {
+                    for (j = 0; j < 1; j++) {
+                        currObj = curr.optJSONObject(j);
+                        JSONObject hoursArray = currObj.getJSONObject("standardHours");
+                        Map<String, String> stan = new HashMap<>();
+                        Iterator<String> iter = hoursArray.keys();
+                        while (iter.hasNext()) {
+                            String key = iter.next();
+                            String val = hoursArray.getString(key);
+                            stan.put(key, val);
+                        }
+                        hours.add(new Hours(currObj.getString("name"), currObj.getString("description"), stan));
                     }
-                    hours.add(new Hours(currObj.getString("name"), currObj.getString("description"), stan));
                 }
             }
 
             results.add(new VCenterSearchResult(subObj.getString("name"), subObj.getString("description"), subObj.getString("directionsInfo"),
                     subObj.getString("latLong"), numbers, emails, addies, hours, subObj.getString("url"), "Visitor Center"));
         }
-        return results;
     }
 
-    public ArrayList<VCenterSearchResult> parseCampJSON() throws Exception {
+    public void parseCampJSON() throws Exception {
         JSONObject mainObj = new JSONObject(jsonString);
         JSONArray array = mainObj.getJSONArray("data");
 
@@ -244,14 +248,22 @@ public class VCenterSearchRequest {
             String url = "";
 
             JSONObject subObj = array.getJSONObject(i);
+            JSONArray curr = null;
+            JSONObject currObj = null;
+            int j = 0;
+            boolean good = true;
 
-            JSONArray curr = subObj.getJSONArray("addresses");
-            JSONObject currObj;
-            int j;
-            for (j = 0; j < curr.length(); j++) {
-                currObj = curr.optJSONObject(j);
-                addies.add(new Address(currObj.getString("line1"), currObj.getString("line2"), currObj.getString("line3"), currObj.getString("city"),
-                        currObj.getString("stateCode"), currObj.getString("postalCode"), currObj.getString("type"))); //PROBLEM HERE
+            try {
+                curr = subObj.getJSONArray("addresses");
+            } catch (Exception e) {
+                good = false;
+            }
+            if (good) {
+                for (j = 0; j < curr.length(); j++) {
+                    currObj = curr.optJSONObject(j);
+                    addies.add(new Address(currObj.getString("line1"), currObj.getString("line2"), currObj.getString("line3"), currObj.getString("city"),
+                            currObj.getString("stateCode"), currObj.getString("postalCode"), currObj.getString("type"))); //PROBLEM HERE
+                }
             }
 
             JSONObject con = subObj.getJSONObject("contacts");
@@ -267,24 +279,30 @@ public class VCenterSearchRequest {
                 emails.add(currObj.getString("emailAddress"));
             }
 
-            curr = subObj.getJSONArray("operatingHours");
-            if (curr.length() > 0) {
-                for (j = 0; j < 1; j++) {
-                    currObj = curr.optJSONObject(j);
-                    JSONObject hoursArray = currObj.getJSONObject("standardHours");
-                    Map<String, String> stan = new HashMap<>();
-                    Iterator<String> iter = hoursArray.keys();
-                    while (iter.hasNext()) {
-                        String key = iter.next();
-                        String val = hoursArray.getString(key);
-                        stan.put(key, val);
+            good = true;
+            try {
+                curr = subObj.getJSONArray("operatingHours");
+            } catch (Exception e) {
+                good = false;
+            }
+            if (good) {
+                if (curr.length() > 0) {
+                    for (j = 0; j < 1; j++) {
+                        currObj = curr.optJSONObject(j);
+                        JSONObject hoursArray = currObj.getJSONObject("standardHours");
+                        Map<String, String> stan = new HashMap<>();
+                        Iterator<String> iter = hoursArray.keys();
+                        while (iter.hasNext()) {
+                            String key = iter.next();
+                            String val = hoursArray.getString(key);
+                            stan.put(key, val);
+                        }
+                        hours.add(new Hours(currObj.getString("name"), currObj.getString("description"), stan));
                     }
-                    hours.add(new Hours(currObj.getString("name"), currObj.getString("description"), stan));
                 }
             }
 
-            boolean good = true;
-            currObj = null;
+            good = true;
             try {
                 currObj = subObj.getJSONObject("accessibility");
             } catch (Exception e) {
@@ -341,7 +359,7 @@ public class VCenterSearchRequest {
                 regURL = subObj.getString("regulationsurl");
             } catch (Exception e) {
             }
-            
+
             try {
                 direct = subObj.getString("directionsoverview");
             } catch (Exception e) {
@@ -351,6 +369,5 @@ public class VCenterSearchRequest {
                     subObj.getString("latLong"), numbers, emails, addies, hours, url, wheelchair, ada, toilets,
                     internet, showers, water, fees, weather, regURL, "Campground"));
         }
-        return results;
     }
 }

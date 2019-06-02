@@ -1,18 +1,53 @@
-Sending 'GET' request to URL : https://developer.nps.gov/api/v1/parks?parkCode=&stateCode=co&q=&fields=addresses%2Ccontacts%2Coperatinghours&&api_key=CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm
+Sending 'GET' request to URL : https://developer.nps.gov/api/v1/parks?parkCode=&stateCode=&fields=addresses%2Ccontacts%2Centrancefees%2Centrancepasses%2Cimages%2Coperatinghours&api_key=CAYHsEFFEaczB1PMOxrLh5GQjtumjbZpdRsZE8Xm
 Response Code : 200
-application/json;charset=utf-8Bent's Old Fort
-Black Canyon Of The Gunnison
-California
-Colorado
-Curecanti
-Dinosaur
-Florissant Fossil Beds
-Great Sand Dunes
-Hovenweep
-Mesa Verde
-Old Spanish
-Pony Express
-Rocky Mountain
-Sand Creek Massacre
-Santa Fe
-Yucca House
+application/json;charset=utf-8African American Civil War Memorial
+Augusta Canal National Heritage Area
+Belmont-Paul Women's Equality National Monument
+Big Cypress National Preserve
+Bryce Canyon National Park
+Camp Nelson National Monument
+Cape Cod National Seashore
+Charles Pinckney National Historic Site
+Cuyahoga Valley National Park
+Dry Tortugas National Park
+Effigy Mounds National Monument
+El Malpais National Monument
+First Ladies National Historic Site
+Fort Bowie National Historic Site
+Fort Davis National Historic Site
+Fort Stanwix National Monument
+Frederick Douglass National Historic Site
+Fredericksburg & Spotsylvania National Military Park
+Friendship Hill National Historic Site
+Gates Of The Arctic National Park & Preserve
+Gauley River National Recreation Area
+Glen Echo Park
+Golden Gate National Recreation Area
+Governors Island National Monument
+Harriet Tubman National Historical Park
+Historic Jamestowne Part of Colonial National Historical Park
+Hohokam Pima National Monument
+Kenai Fjords National Park
+Knife River Indian Villages National Historic Site
+Korean War Veterans Memorial
+Lincoln Memorial
+Little Rock Central High School National Historic Site
+Longfellow House Washington's Headquarters National Historic Site
+Manzanar National Historic Site
+Martin Van Buren National Historic Site
+Motor Cities National Heritage Area
+National Aviation Heritage Area
+National Capital Parks-East
+Niobrara National Scenic River
+Organ Pipe Cactus National Monument
+Ozark National Scenic Riverways
+Parashant National Monument
+Petersburg National Battlefield
+Sagamore Hill National Historic Site
+Saint Croix National Scenic Riverway
+Salinas Pueblo Missions National Monument
+Salt River Bay National Historical Park and Ecological Preserve
+San Antonio Missions National Historical Park
+Theodore Roosevelt National Park
+Thomas Jefferson Memorial
+Yorktown Battlefield Part of Colonial National Historical Park

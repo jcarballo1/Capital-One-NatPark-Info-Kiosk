@@ -19,7 +19,9 @@ public class CESearchResult {
     private String url = "";
     
     //articles
-    private String listing = "";
+    private String altText = "";
+    private String listingDes = "";
+    private String imageURL = "";
     
     //events
     private String email = "";
@@ -41,14 +43,16 @@ public class CESearchResult {
         category = c;
         description = d;
         url = u;
-        type = "alert";
+        type = "Alert";
     }
     
-    public CESearchResult(String l, String t, String u){ //Article
-        listing = l;
+    public CESearchResult(String alt, String iURL, String l, String t, String u){ //Article
+        altText = alt;
+        imageURL = iURL;
+        listingDes = l;
         title = t;
         url = u;
-        type = "article";
+        type = "Article";
     }
     
     public CESearchResult(String e, String name, String phone, ArrayList<String> ds, String l, String tStart, String tEnd, String d, String t){ //Event
@@ -61,15 +65,15 @@ public class CESearchResult {
         timeEnd = tEnd;
         description = d;
         title = t;
-        type = "event";
+        type = "Event";
     }
     
-    public CESearchResult(String a, String rd, String t, String u, String blank){ //News
+    public CESearchResult(String a, String rd, String t, String u, String blank, String blank2){ //News
         abs = a;
         releaseDate = rd;
         title = t;
         url = u;
-        type = "news";
+        type = "News";
     }
     
     /**
@@ -126,20 +130,6 @@ public class CESearchResult {
      */
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    /**
-     * @return the listing
-     */
-    public String getListing() {
-        return listing;
-    }
-
-    /**
-     * @param listing the listing to set
-     */
-    public void setListing(String listing) {
-        this.listing = listing;
     }
 
     /**
@@ -281,4 +271,47 @@ public class CESearchResult {
     public void setType(String type) {
         this.type = type;
     }
+
+    /**
+     * @return the altText
+     */
+    public String getAltText() {
+        return altText;
+    }
+
+    /**
+     * @param altText the altText to set
+     */
+    public void setAltText(String altText) {
+        this.altText = altText;
+    }
+
+    /**
+     * @return the listingDes
+     */
+    public String getListingDes() {
+        return listingDes;
+    }
+
+    /**
+     * @param listingDes the listingDes to set
+     */
+    public void setListingDes(String listingDes) {
+        this.listingDes = listingDes;
+    }
+
+    /**
+     * @return the imageURL
+     */
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    /**
+     * @param imageURL the imageURL to set
+     */
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
 }
