@@ -72,7 +72,7 @@ public class GenSearchRequest {
         inFile.write(connection.getContentType());
 
         InputStream input = (InputStream) connection.getContent();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(input, "iso-8859-1"), 8);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(input, "UTF-8"), 8);
         StringBuilder sb = new StringBuilder();
         String line = null;
         while ((line = reader.readLine()) != null) {

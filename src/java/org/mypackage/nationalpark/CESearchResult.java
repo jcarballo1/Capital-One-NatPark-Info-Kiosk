@@ -71,7 +71,7 @@ public class CESearchResult {
         type = "Event";
     }
     
-    public CESearchResult(String a, String rd, String t, String u, String iu, String blank2){ //News
+    public CESearchResult(String a, String rd, String t, String u, String iu, String blank){ //News
         abs = a;
         releaseDate = rd;
         title = t;

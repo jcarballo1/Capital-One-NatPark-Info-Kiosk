@@ -26,7 +26,7 @@
         %>
         <title>Current Events</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta charset="utf-8" />
+        <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -307,7 +307,7 @@
                                 <option value="guge">Gullah/Geechee Cultural Heritage Corridor</option>
 
                                 <option value="hafo">Hagerman Fossil Beds National Monument</option>
-                                <option value="hale">Haleakalā National Park</option>
+                                <option value="hale">Haleakal? National Park</option>
                                 <option value="hagr">Hamilton Grange National Memorial</option>
                                 <option value="hamp">Hampton National Historic Site</option>
                                 <option value="haha">Harmony Hall </option>
@@ -350,7 +350,7 @@
                                 <option value="juba">Juan Bautista de Anza National Historic Trail</option>
 
                                 <option value="kala">Kalaupapa National Historical Park</option>
-                                <option value="kaho">Kaloko-Honokōhau National Historical Park</option>
+                                <option value="kaho">Kaloko-Honok?hau National Historical Park</option>
                                 <option value="kaww">Katahdin Woods and Waters National Monument</option>
                                 <option value="katm">Katmai National Park & Preserve</option>
                                 <option value="kefj">Kenai Fjords National Park</option>
@@ -480,8 +480,8 @@
                                 <option value="whho">President's Park (White House) </option>
                                 <option value="prsf">Presidio of San Francisco </option>
                                 <option value="prwi">Prince William Forest Park</option>
-                                <option value="puho">Pu`uhonua O Hōnaunau National Historical Park</option>
-                                <option value="puhe">Pu`ukoholā Heiau National Historic Site</option>
+                                <option value="puho">Pu`uhonua O H?naunau National Historical Park</option>
+                                <option value="puhe">Pu`ukohol? Heiau National Historic Site</option>
                                 <option value="pull">Pullman National Monument</option>
 
                                 <option value="rabr">Rainbow Bridge National Monument</option>
