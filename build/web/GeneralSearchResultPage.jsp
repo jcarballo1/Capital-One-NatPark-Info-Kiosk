@@ -10,6 +10,7 @@
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.oracle.wls.shaded.org.apache.xalan.xsltc.DOM"%>
+<%@page import="org.mypackage.nationalpark.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" import ="org.mypackage.nationalpark.GenSearchRequest" language="java"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
