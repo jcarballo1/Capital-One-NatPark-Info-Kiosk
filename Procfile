@@ -1,1 +1,1 @@
-web: java -war target/NationalParkServiceInfoKiosk-1.0-SNAPSHOT.war
+war:deploy target/NationalParkServiceInfoKiosk-1.0-SNAPSHOT.war --app nationalparkservicekiosk
