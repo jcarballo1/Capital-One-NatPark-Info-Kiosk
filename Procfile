@@ -1,1 +1,1 @@
-web: java -jar target/nationalparkservicekiosk-1.0.0.jar
+web: java -jar target/NationalParkServiceInfoKiosk-1.0-SNAPSHOT.war
