@@ -1,1 +1,1 @@
-war:deploy target/NationalParkServiceInfoKiosk-1.0-SNAPSHOT.war --app nationalparkservicekiosk
+web: java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/*.war
