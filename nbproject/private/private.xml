@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/jcarb/Documents/NetBeansProjects/NationalParkServiceInfoKiosk/web/CEResultPage.jsp</file>
+            <file>file:/C:/Users/jcarb/Documents/NetBeansProjects/NationalParkServiceInfoKiosk/src/java/org/mypackage/nationalpark/Address.java</file>
+            <file>file:/C:/Users/jcarb/Documents/NetBeansProjects/NationalParkServiceInfoKiosk/web/EdResultPage.jsp</file>
+            <file>file:/C:/Users/jcarb/Documents/NetBeansProjects/NationalParkServiceInfoKiosk/web/GeneralSearchResultPage.jsp</file>
+            <file>file:/C:/Users/jcarb/Documents/NetBeansProjects/NationalParkServiceInfoKiosk/web/VCenterResultPage.jsp</file>
+        </group>
     </open-files>
 </project-private>
