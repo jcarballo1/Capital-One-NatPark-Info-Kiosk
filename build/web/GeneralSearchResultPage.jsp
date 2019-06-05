@@ -6,11 +6,15 @@
 
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="org.mypackage.nationalpark.*"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.oracle.wls.shaded.org.apache.xalan.xsltc.DOM"%>
+<<<<<<< HEAD
 <%@page import="org.mypackage.nationalpark.*"%>
+=======
+<%@page import="org.mypackage.nationalpark.GenSearchRequest"%>
+<%@page import="org.mypackage.nationalpark.GeneralSearchResult;"%>
+>>>>>>> 403d73a8153e5e51af25d8332aa5771d82992c4c
 <%@page contentType="text/html" pageEncoding="UTF-8" import ="org.mypackage.nationalpark.GenSearchRequest" language="java"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Icon */
 
 	.icon {
@@ -8,4 +9,16 @@
 		> .label {
 			display: none;
 		}
+=======
+/* Icon */
+
+	.icon {
+		@include icon;
+		border-bottom: none;
+		position: relative;
+
+		> .label {
+			display: none;
+		}
+>>>>>>> 403d73a8153e5e51af25d8332aa5771d82992c4c
 	}

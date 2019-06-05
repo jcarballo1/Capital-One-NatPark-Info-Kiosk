@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Box */
 
 	.box {
@@ -26,4 +27,34 @@
  		}
 	}
 
+=======
+/* Box */
+
+	.box {
+		border-radius: _size(border-radius);
+		box-shadow: 0px 0px 4px 1px _palette(border-lt);
+		padding: 3rem;
+
+		> :last-child {
+			margin-bottom: 0;
+		}
+
+		&.alt {
+			border: 0;
+			border-radius: 0;
+			padding: 0;
+		}
+
+		@include breakpoint('<=medium') {
+			padding: 2rem;
+		}
+	}
+
+	@mixin color-box($p: null) {
+ 		.box {
+ 			border-color: _palette($p, border);
+ 		}
+	}
+
+>>>>>>> 403d73a8153e5e51af25d8332aa5771d82992c4c
 	@include color-box;

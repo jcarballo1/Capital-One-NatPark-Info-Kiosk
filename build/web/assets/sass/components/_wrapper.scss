@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Wrapper */
 
 	.wrapper {
@@ -17,4 +18,25 @@
 			@include padding(2rem, 0);
 		}
 
+=======
+/* Wrapper */
+
+	.wrapper {
+		@include padding(8rem, 0);
+		position: relative;
+		z-index: 1;
+
+		@include breakpoint('<=large') {
+			@include padding(4rem, 0);
+		}
+
+		@include breakpoint('<=small') {
+			@include padding(3rem, 0);
+		}
+
+		@include breakpoint('<=xsmall') {
+			@include padding(2rem, 0);
+		}
+
+>>>>>>> 403d73a8153e5e51af25d8332aa5771d82992c4c
 	}

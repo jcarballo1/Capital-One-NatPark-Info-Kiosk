@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Inner */
 
 	.inner {
@@ -8,4 +9,16 @@
 		@include breakpoint('<=xsmall') {
 			max-width: calc(100% - 3rem);
 		}
+=======
+/* Inner */
+
+	.inner {
+		margin: 0 auto;
+		width: _size(inner-width);
+		max-width: calc(100% - 6rem);
+
+		@include breakpoint('<=xsmall') {
+			max-width: calc(100% - 3rem);
+		}
+>>>>>>> 403d73a8153e5e51af25d8332aa5771d82992c4c
 	}

@@ -4,6 +4,7 @@
         <servlet-name>MyServlet</servlet-name>
         <servlet-class>MyServlet</servlet-class>
     </servlet>
+<<<<<<< HEAD
     <servlet>
         <servlet-name>GenSearchServlet</servlet-name>
         <servlet-class>org.mypackage.nationalpark.GenSearchServlet</servlet-class>
@@ -11,6 +12,11 @@
     <servlet-mapping>
         <servlet-name>GenSearchServlet</servlet-name>
         <url-pattern>/GenSearchServlet</url-pattern>
+=======
+    <servlet-mapping>
+        <servlet-name>MyServlet</servlet-name>
+        <url-pattern>/MyServlet</url-pattern>
+>>>>>>> 403d73a8153e5e51af25d8332aa5771d82992c4c
     </servlet-mapping>
     <session-config>
         <session-timeout>
