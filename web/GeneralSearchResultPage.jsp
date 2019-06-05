@@ -17,11 +17,11 @@
 <html>
     <head> 
         <%
-            String desig = request.getParameter("designation");
-            String state = request.getParameter("state");
-            GenSearchRequest req = new GenSearchRequest();//Creating class Object
-            ArrayList<GeneralSearchResult> res = req.sendGetSingle(desig, state);
-        %>
+//            String desig = request.getParameter("designation");
+//            String state = request.getParameter("state");
+//            GenSearchRequest req = new GenSearchRequest();//Creating class Object
+//            ArrayList<GeneralSearchResult> res = req.sendGetSingle(desig, state);
+//        %>
         <title>General Search</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8" />
@@ -688,105 +688,106 @@
 
                 <div class="row">
                     <div class="col-12">
+                        <jsp:include page="GenSearchServlet" />
                         <%
-                            out.println("<ul class=\"alt\">");
-                            if (res.size() < 1) {
-                                out.println("<li>No results matched your request. Please try again.<li>");
-                            } else {
-                                for (int i = 0; i < res.size(); i++) {
-                                    out.println("<li>" + res.get(i).getName() + "<br><br>");
-                                    out.println(res.get(i).getDescrip() + "<br><br>");
-
-                                    int j;
-                                    if (res.get(i).getAdds().size() > 0) {
-                                        for (j = 0; j < res.get(i).getAdds().size(); j++) {
-                                            out.println(res.get(i).getAdds().get(j).getType() + ":");
-                                            out.println(res.get(i).getAdds().get(j).getLine1());
-                                            if (res.get(i).getAdds().get(j).getLine2() != "") {
-                                                out.println(res.get(i).getAdds().get(j).getLine2());
-                                            }
-                                            if (res.get(i).getAdds().get(j).getLine3() != "") {
-                                                out.println(res.get(i).getAdds().get(j).getLine3());
-                                            }
-                                            out.println(res.get(i).getAdds().get(j).getCity() + ", " + res.get(i).getAdds().get(j).getState()
-                                                    + " " + res.get(i).getAdds().get(j).getZip() + "<br>");
-                                        }
-                                    }
-
-                                    if (res.get(i).getNumbers().size() > 0) {
-                                        for (j = 0; j < res.get(i).getNumbers().size(); j++) {
-                                            out.println(res.get(i).getNumbers().get(j).getType() + ":");
-                                            out.println(res.get(i).getNumbers().get(j).getNumber() + "<br>");
-                                        }
-                                    }
-
-                                    if (res.get(i).getEmails().size() > 0) {
-                                        for (j = 0; j < res.get(i).getEmails().size(); j++) {
-                                            if (res.get(i).getEmails().get(j) != "" && res.get(i).getEmails().get(j) != "0@0") {
-                                                out.println(res.get(i).getEmails().get(j) + "<br>");
-                                            }
-                                        }
-                                    }
-
-                                    if (res.get(i).getFees().size() > 0) {
-                                        for (j = 0; j < res.get(i).getFees().size(); j++) {
-                                            out.println("<br>");
-                                            if (res.get(i).getFees().get(j).getTitle() != "") {
-                                                out.println(res.get(i).getFees().get(j).getTitle() + ":<br>");
-                                            }
-                                            if (res.get(i).getFees().get(j).getDes() != "") {
-                                                out.println(res.get(i).getFees().get(j).getDes() + "<br>");
-                                            }
-                                            if (res.get(i).getFees().get(j).getCost() != "") {
-                                                out.println("$" + res.get(i).getFees().get(j).getCost() + "<br>");
-                                            }
-                                        }
-                                    }
-
-                                    if (res.get(i).getPasses().size() > 0) {
-                                        for (j = 0; j < res.get(i).getPasses().size(); j++) {
-                                            out.println("<br>");
-                                            if (res.get(i).getPasses().get(j).getTitle() != "") {
-                                                out.println(res.get(i).getPasses().get(j).getTitle() + ":<br>");
-                                            }
-                                            if (res.get(i).getPasses().get(j).getDes() != "") {
-                                                out.println(res.get(i).getPasses().get(j).getDes() + "<br>");
-                                            }
-                                            if (res.get(i).getPasses().get(j).getCost() != "") {
-                                                out.println("$" + res.get(i).getPasses().get(j).getCost() + "<br>");
-                                            }
-                                        }
-                                    }
-
-                                    if (res.get(i).getHours().size() > 0) {
-                                        for (j = 0; j < res.get(i).getHours().size(); j++) {
-                                            out.println("<br>");
-                                            out.println("Standard Hours:<br>");
-                                            out.println(res.get(i).getHours().get(j).getDes() + "<br>");
-
-                                            Iterator<String> iter = res.get(i).getHours().get(j).getStanHours().keySet().iterator();
-                                            while (iter.hasNext()) {
-                                                String key = iter.next();
-                                                out.println(key + ": " + res.get(i).getHours().get(j).getStanHours().get(key) + "<br>");
-                                            }
-                                        }
-                                    }
-                                    
-                                    if (res.get(i).getWeather() != "") {
-                                        out.println("<br>Weather Info:");
-                                        out.println("<br>" + res.get(i).getWeather());
-                                    }
-                                    
-                                    if (res.get(i).getUrl()!= "") {
-                                        out.println("<br><br>For information please visit:");
-                                        out.println("<br>");
-                                        out.println("<a href=\"" + res.get(i).getUrl() + "\"> Official " + res.get(i).getName() + " Page</a>");
-                                    }
-                                    
-                                    out.println("</li>");
-                                }
-                            }
-                            out.println("</ul>");
+//                            out.println("<ul class=\"alt\">");
+//                            if (res.size() < 1) {
+//                                out.println("<li>No results matched your request. Please try again.<li>");
+//                            } else {
+//                                for (int i = 0; i < res.size(); i++) {
+//                                    out.println("<li>" + res.get(i).getName() + "<br><br>");
+//                                    out.println(res.get(i).getDescrip() + "<br><br>");
+//
+//                                    int j;
+//                                    if (res.get(i).getAdds().size() > 0) {
+//                                        for (j = 0; j < res.get(i).getAdds().size(); j++) {
+//                                            out.println(res.get(i).getAdds().get(j).getType() + ":");
+//                                            out.println(res.get(i).getAdds().get(j).getLine1());
+//                                            if (res.get(i).getAdds().get(j).getLine2() != "") {
+//                                                out.println(res.get(i).getAdds().get(j).getLine2());
+//                                            }
+//                                            if (res.get(i).getAdds().get(j).getLine3() != "") {
+//                                                out.println(res.get(i).getAdds().get(j).getLine3());
+//                                            }
+//                                            out.println(res.get(i).getAdds().get(j).getCity() + ", " + res.get(i).getAdds().get(j).getState()
+//                                                    + " " + res.get(i).getAdds().get(j).getZip() + "<br>");
+//                                        }
+//                                    }
+//
+//                                    if (res.get(i).getNumbers().size() > 0) {
+//                                        for (j = 0; j < res.get(i).getNumbers().size(); j++) {
+//                                            out.println(res.get(i).getNumbers().get(j).getType() + ":");
+//                                            out.println(res.get(i).getNumbers().get(j).getNumber() + "<br>");
+//                                        }
+//                                    }
+//
+//                                    if (res.get(i).getEmails().size() > 0) {
+//                                        for (j = 0; j < res.get(i).getEmails().size(); j++) {
+//                                            if (res.get(i).getEmails().get(j) != "" && res.get(i).getEmails().get(j) != "0@0") {
+//                                                out.println(res.get(i).getEmails().get(j) + "<br>");
+//                                            }
+//                                        }
+//                                    }
+//
+//                                    if (res.get(i).getFees().size() > 0) {
+//                                        for (j = 0; j < res.get(i).getFees().size(); j++) {
+//                                            out.println("<br>");
+//                                            if (res.get(i).getFees().get(j).getTitle() != "") {
+//                                                out.println(res.get(i).getFees().get(j).getTitle() + ":<br>");
+//                                            }
+//                                            if (res.get(i).getFees().get(j).getDes() != "") {
+//                                                out.println(res.get(i).getFees().get(j).getDes() + "<br>");
+//                                            }
+//                                            if (res.get(i).getFees().get(j).getCost() != "") {
+//                                                out.println("$" + res.get(i).getFees().get(j).getCost() + "<br>");
+//                                            }
+//                                        }
+//                                    }
+//
+//                                    if (res.get(i).getPasses().size() > 0) {
+//                                        for (j = 0; j < res.get(i).getPasses().size(); j++) {
+//                                            out.println("<br>");
+//                                            if (res.get(i).getPasses().get(j).getTitle() != "") {
+//                                                out.println(res.get(i).getPasses().get(j).getTitle() + ":<br>");
+//                                            }
+//                                            if (res.get(i).getPasses().get(j).getDes() != "") {
+//                                                out.println(res.get(i).getPasses().get(j).getDes() + "<br>");
+//                                            }
+//                                            if (res.get(i).getPasses().get(j).getCost() != "") {
+//                                                out.println("$" + res.get(i).getPasses().get(j).getCost() + "<br>");
+//                                            }
+//                                        }
+//                                    }
+//
+//                                    if (res.get(i).getHours().size() > 0) {
+//                                        for (j = 0; j < res.get(i).getHours().size(); j++) {
+//                                            out.println("<br>");
+//                                            out.println("Standard Hours:<br>");
+//                                            out.println(res.get(i).getHours().get(j).getDes() + "<br>");
+//
+//                                            Iterator<String> iter = res.get(i).getHours().get(j).getStanHours().keySet().iterator();
+//                                            while (iter.hasNext()) {
+//                                                String key = iter.next();
+//                                                out.println(key + ": " + res.get(i).getHours().get(j).getStanHours().get(key) + "<br>");
+//                                            }
+//                                        }
+//                                    }
+//                                    
+//                                    if (res.get(i).getWeather() != "") {
+//                                        out.println("<br>Weather Info:");
+//                                        out.println("<br>" + res.get(i).getWeather());
+//                                    }
+//                                    
+//                                    if (res.get(i).getUrl()!= "") {
+//                                        out.println("<br><br>For information please visit:");
+//                                        out.println("<br>");
+//                                        out.println("<a href=\"" + res.get(i).getUrl() + "\"> Official " + res.get(i).getName() + " Page</a>");
+//                                    }
+//                                    
+//                                    out.println("</li>");
+//                                }
+//                            }
+//                            out.println("</ul>");
                         %>
                     </div>
                 </div>

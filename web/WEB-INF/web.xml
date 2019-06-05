@@ -4,9 +4,13 @@
         <servlet-name>MyServlet</servlet-name>
         <servlet-class>MyServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GenSearchServlet</servlet-name>
+        <servlet-class>org.mypackage.nationalpark.GenSearchServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>MyServlet</servlet-name>
-        <url-pattern>/MyServlet</url-pattern>
+        <servlet-name>GenSearchServlet</servlet-name>
+        <url-pattern>/GenSearchServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
